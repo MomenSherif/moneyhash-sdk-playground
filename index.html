@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        max-width: 500px;
+        margin: auto;
+        margin-top: 2rem;
+      }
+
+      .input {
+        border: 2px solid rgb(229, 231, 235);
+        border-radius: 6px;
+        overflow: hidden;
+        height: 40px;
+      }
+
+      .MoneyHashElement--focus {
+        border-color: #1352b8;
+      }
+
+      .MoneyHashElement--error {
+        border-color: #9b0b0b;
+      }
+
+      #message {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .submit-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      #submit {
+        background: #0b1e3d;
+        border: none;
+        outline: none;
+        padding: 1rem 3rem;
+        border-radius: 6px;
+        color: white;
+      }
+
+      #submit:hover {
+        background: rgb(194, 120, 45);
+        color: #0b1e3d;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input
+        id="intent-id"
+        class="input"
+        placeholder="Intent ID"
+        style="padding-left: 20px; grid-column: 1/-1"
+      />
+      <div class="input" style="grid-column: 1/-1" id="card-holder-name"></div>
+      <div class="input" style="grid-column: 1/-1" id="card-number"></div>
+      <div class="input" id="card-expiry-month"></div>
+      <div class="input" id="card-expiry-year"></div>
+      <div class="input" style="grid-column: 1/-1" id="card-cvv"></div>
+    </div>
+    <div class="submit-container">
+      <button id="submit">Submit</button>
+    </div>
+
+    <div id="message"></div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

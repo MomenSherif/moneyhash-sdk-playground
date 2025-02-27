@@ -12,6 +12,6 @@
     "vite": "^5.4.8"
   },
   "dependencies": {
-    "@moneyhash/js-sdk": "^1.7.3"
+    "@moneyhash/js-sdk": "^1.13.1"
   }
 }

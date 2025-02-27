@@ -2,6 +2,7 @@ import MoneyHash from '@moneyhash/js-sdk/headless';
 
 const moneyHash = new MoneyHash({
   type: 'payment',
+  publicApiKey: 'public.3lGdsVR5.EKE4vhkylCOlnUjRftQWbFCvL2m5urn5EWV6s4wQ',
 });
 
 const elements = moneyHash.elements({
@@ -53,32 +54,20 @@ cardExpiryMonth.mount();
 cardExpiryYear.mount();
 
 document.getElementById('submit').addEventListener('click', async () => {
+  submit.innerHTML = 'Submitting...';
+  message.innerHTML = '';
+
   try {
-    const intentId = document.querySelector('#intent-id').value;
-    if (!intentId) return alert('Please provide intent id');
+    const cardData = await moneyHash.cardForm.collect();
+    console.log({ cardData });
 
-    const { stateDetails } = await moneyHash.proceedWith({
-      intentId: intentId,
-      type: 'method',
-      id: 'CARD',
-    });
-
-    const res = await moneyHash.submitForm({
-      intentId: intentId,
-      accessToken: stateDetails.formFields.card.accessToken,
-      billingData: {
-        email: 'hamada@hamada.com',
-      },
-    });
-
-    console.log('Success! Intent Processed', { res });
     submit.innerHTML = 'Submit';
-    message.innerHTML = 'Success! Intent Processed';
+    message.innerHTML = 'Success! Card Collected';
     message.setAttribute('style', 'color: green');
   } catch (error) {
     console.log('playground', error);
     submit.innerHTML = 'Submit';
-    message.innerHTML = `${error}`;
+    message.innerHTML = `${JSON.stringify(error, null, 2)}`;
     message.setAttribute('style', 'color: red');
   }
 });
